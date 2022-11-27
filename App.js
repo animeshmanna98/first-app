@@ -1,8 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import { useEffect, useState } from 'react';
 import { SafeAreaView, View, FlatList, StyleSheet, Text } from 'react-native';
-
-
+import Loader from './Loader';
 
 export default function App() {
 
@@ -42,12 +41,21 @@ export default function App() {
   );
 
   return (
+   
     <SafeAreaView style={styles.container}>
-    <FlatList
+       <View >
+      <Text style={styles.text}>
+        This is my first react native app
+      </Text>
+      <Text></Text>
+      </View>
+     
+      {isLoading && <Loader/>}
+   {!isLoading && <FlatList
       data={DATA}
       renderItem={renderItem}
       keyExtractor={item => item._id}
-    />
+    />}
   </SafeAreaView>
   );
 }
@@ -55,7 +63,9 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: StatusBar.currentHeight || 0,
+    justifyContent: 'center',
+    marginHorizontal: 16,
+    marginTop: 90,
   },
   item: {
     backgroundColor: '#f9c2ff',
@@ -65,5 +75,9 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 32,
+  },
+  text: {
+    fontSize: 23,
+    justifyContent: 'center',
   },
 });
